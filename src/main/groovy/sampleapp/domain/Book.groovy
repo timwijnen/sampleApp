@@ -1,20 +1,21 @@
 package sampleapp.domain
 
-import javax.persistence.*
+import grails.artefact.Artefact
+import org.grails.core.artefact.DomainClassArtefactHandler
+import org.grails.datastore.gorm.GormEntity
+
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.Table
 
 @Entity
+@Artefact(DomainClassArtefactHandler.TYPE)
 @Table(name="BOOKS")
-class Book {
-    @Id
+class Book implements GormEntity<Book> {
+
     @GeneratedValue
-    private Integer id
-    private String name
-
-    String getName() {
-        name
-    }
-
-    void setName(String name) {
-        this.name = name
-    }
+    @Id
+    Long id
+    String name
 }

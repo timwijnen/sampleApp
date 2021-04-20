@@ -5,7 +5,7 @@ import grails.testing.mixin.integration.Integration
 import sampleapp.domain.Book
 import spock.lang.Specification
 
-@Integration
+@Integration(applicationClass = Application)
 @Rollback
 class BookServiceIntegrationSpec extends Specification {
 
@@ -13,7 +13,7 @@ class BookServiceIntegrationSpec extends Specification {
         given:
         Book book = new Book()
         book.name = "The Hobbit"
-        book.save()
+        book.save(flush: true)
 
         expect:
         (Book.findAll().first() as Book).name == "The Hobbit"
