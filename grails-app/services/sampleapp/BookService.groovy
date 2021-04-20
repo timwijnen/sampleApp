@@ -1,12 +1,10 @@
 package sampleapp
 
-import grails.gorm.transactions.Transactional
+import grails.gorm.services.Service
 import sampleapp.domain.Book
 
-@Transactional
-class BookService {
+@Service(Book)
+interface BookService {
 
-    def save(Book book) {
-        book.save()
-    }
+    Book save(String name)
 }
